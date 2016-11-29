@@ -17,9 +17,10 @@ namespace OOP_Laba3_Paint.Model.Figures
         Point m_point;
         protected Color paintColor;
         private Color brushColor;
-
+     
         Size m_size;
-
+        protected static int Number;
+        public string Name; 
 
 
         protected Color PaintColor
@@ -77,7 +78,10 @@ namespace OOP_Laba3_Paint.Model.Figures
         public abstract void Draw();
 
 
-
+        public override string ToString()
+        {
+            return this.GetType().Name;
+        }
 
 
         public AFigure(Point point, Size size, Color paintColor, Color brushColor)
@@ -86,6 +90,11 @@ namespace OOP_Laba3_Paint.Model.Figures
             Size = size;
             PaintColor = paintColor;
             BrushColor = brushColor;
+
+            Number++;
+            Name = this.ToString() + " " + Number;
+
+
         }
 
 

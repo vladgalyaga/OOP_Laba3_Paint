@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OOP_Laba3_Paint.Model.Figures.CRectangle" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Figures\CRectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Model.Figures.Ellipse" Collapsed="true">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Figures\Ellipse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Model.Figures.FillEllipse" Collapsed="true">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Figures\FillElipse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Model.Figures.FillRectangle" Collapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Figures\FillRectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Model.Figures.Line" Collapsed="true">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Figures\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Layer">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAgAAAAAAAAAAAACAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Layer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Figures" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.ModelController" Collapsed="true">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARIAAUAABAAIEIAAAAQAAAKBQABAAKgCgAAAEAAAI=</HashCode>
+      <FileName>Model\ModelController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="m_layers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Controller" Collapsed="true">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAAAAAAAAAQAACQAABAAAAEAAAAAAJCAAABAAAAA=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_model" />
+      <Field Name="m_view" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Form1" Collapsed="true">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BSAgAACQACBKACURIKCBrQAGTMA8wQMJkiAICQiAAGA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOP_Laba3_Paint.Model.Figures.AFigure" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAggAEAEAAAAQAAAAAAAQAAEAAAQJAAAE=</HashCode>
+      <FileName>Model\AFigure\AFigure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="OOP_Laba3_Paint.IEventOfView" Collapsed="true">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABIAAEBAAAAAAAAAAAAgQEAkgAAAAAAAAA=</HashCode>
+      <FileName>IEventOfView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OOP_Laba3_Paint.IModel" Collapsed="true">
+    <Position X="14" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAQAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>IModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="OOP_Laba3_Paint.ChangeIMGEventHandler" Collapsed="true">
+    <Position X="15.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IModel.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

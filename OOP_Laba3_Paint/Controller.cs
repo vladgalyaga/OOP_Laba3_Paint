@@ -17,19 +17,39 @@ namespace OOP_Laba3_Paint
         public Controller(Form1 view)
         {
             m_view = view;
-            m_view.enteringFigureEventHandler += View_enteringFigureEventHandler;
+            m_view.enteringCreateFigureEventHandler += View_enteringFigureEventHandler;
             m_view.enteringLayerEventHandler += M_view_enteringLayerEventHandler;
             m_view.changePaintColorEventHandler += M_view_changePaintColorEventHandler;
             m_view.changeBrushColorEventHandler += M_view_changeBrushColorEventHandler;
             m_view.addLayerEventHandler += M_view_addLayerEventHandler;
             m_view.addFigureEventHandler += M_view_addFigureEventHandler;
+            m_view.deleteLayerEventHandler += M_view_deleteLayerEventHandler;
+
 
 
             m_model = new ModelController();
             m_model.changeIMGEventHandler += M_model_changeIMGEventHandler;
+            m_model.changeLayersEventHandler += M_model_changeLayersEventHandler;
 
 
 
+
+            m_model.changeFiguresEventHandler += m_view.RefreshFigures;
+
+
+
+            m_view.enteringFigureEventHandler += m_model.EnteringFigure;
+
+        }
+
+        private void M_view_deleteLayerEventHandler()
+        {
+            m_model.DeleteLayers();
+        }
+
+        private void M_model_changeLayersEventHandler(string[] layers)
+        {
+            m_view.RefreshLayers(layers);
         }
 
         private void M_model_changeIMGEventHandler(Bitmap img)
@@ -39,6 +59,7 @@ namespace OOP_Laba3_Paint
 
         private void M_view_addFigureEventHandler(Point point, Size size)
         {
+            
             m_model.AddFigure(point, size);
         }
 
@@ -66,5 +87,6 @@ namespace OOP_Laba3_Paint
         {
             m_model.EnteringFigure(s);
         }
+
     }
 }

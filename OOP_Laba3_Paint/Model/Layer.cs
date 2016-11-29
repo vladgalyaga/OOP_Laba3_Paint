@@ -10,6 +10,8 @@ namespace OOP_Laba3_Paint
     class Layer
     {
         public List<AFigure> Figures = new List<AFigure>();
+        public string NumberOfLayer;
+        static int m_CountOfLayer=0;
 
         public void Draw()
         {
@@ -19,5 +21,11 @@ namespace OOP_Laba3_Paint
             }
         }
 
+
+        public Layer()
+        {
+            m_CountOfLayer++;
+            NumberOfLayer = m_CountOfLayer.ToString();
+        }
     }
 }

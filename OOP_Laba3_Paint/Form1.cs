@@ -21,13 +21,19 @@ namespace OOP_Laba3_Paint
         public event AddLayerEventHandler addLayerEventHandler;
         public event AddFigureEventHandler addFigureEventHandler;
         public event EnteringLayerEventHandler enteringLayerEventHandler;
+
+
         public event ChangePaintColorEventHandler changePaintColorEventHandler;
         public event ChangeBrushColorEventHandler changeBrushColorEventHandler;
+        public event DeleteLayerEventHandler deleteLayerEventHandler;
+        public event EnteringCreateFigureEventHandler enteringCreateFigureEventHandler;
 
         public Form1()
         {
             InitializeComponent();
         }
+
+
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -57,15 +63,34 @@ namespace OOP_Laba3_Paint
             }
         }
 
+
+        #region enteringfigure
         private void retangleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            enteringFigureEventHandler?.Invoke("retangle");
+            enteringCreateFigureEventHandler?.Invoke("retangle");
         }
 
         private void ellipceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            enteringFigureEventHandler?.Invoke("ellipce");
+            enteringCreateFigureEventHandler?.Invoke("ellipce");
         }
+        private void LineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enteringCreateFigureEventHandler?.Invoke("line");
+
+
+        }
+        private void fillEllipceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enteringCreateFigureEventHandler?.Invoke("fillEllipse");
+        }
+
+        private void fillRetangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enteringCreateFigureEventHandler?.Invoke("fillRetangle");
+        }
+        #endregion
+
 
         private void peintsColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -75,13 +100,13 @@ namespace OOP_Laba3_Paint
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
 
-          
-                size.Width = Math.Abs(point.X - oldPoint.X);
-          
-            
-                size.Height = Math.Abs(point.Y - oldPoint.Y);
-           
-            
+
+            size.Width = Math.Abs(point.X - oldPoint.X);
+
+
+            size.Height = Math.Abs(point.Y - oldPoint.Y);
+
+
 
             addFigureEventHandler?.Invoke(oldPoint, size);
         }
@@ -91,12 +116,6 @@ namespace OOP_Laba3_Paint
             changeBrushColorEventHandler(EnterColor());
         }
 
-        private void LineToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            enteringFigureEventHandler?.Invoke("line");
-
-
-        }
 
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -118,7 +137,7 @@ namespace OOP_Laba3_Paint
 
         private void listBoxFigure_SelectedIndexChanged(object sender, EventArgs e)
         {
-            enteringLayerEventHandler(listBoxFigure.SelectedIndex);
+            enteringFigureEventHandler(listBoxFigure.SelectedIndex);
         }
 
         private Color EnterColor()
@@ -137,21 +156,35 @@ namespace OOP_Laba3_Paint
 
         }
 
-        private void fillEllipceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            enteringFigureEventHandler?.Invoke("fillEllipse");
-        }
 
-        private void fillRetangleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            enteringFigureEventHandler?.Invoke("fillRetangle");
-        }
 
         public void Refresh(Bitmap img)
         {
             panel1.BackgroundImage = img;
 
             panel1.Refresh();
+        }
+
+        private void addLayerButton_Click(object sender, EventArgs e)
+        {
+            addLayerEventHandler?.Invoke();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            deleteLayerEventHandler?.Invoke();
+        }
+
+        public void RefreshLayers(string[] layers)
+        {
+            listBoxLayer.Items.Clear();
+            listBoxLayer.Items.AddRange(layers);
+        }
+
+        public void RefreshFigures(string[] figures)
+        {
+            listBoxFigure.Items.Clear();
+            listBoxFigure.Items.AddRange(figures);
         }
     }
 }

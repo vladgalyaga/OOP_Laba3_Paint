@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Laba3_Paint.Model.Figures
+
+namespace OOP_Laba3_Paint
 {
     class FillEllipse : Ellipse
     {

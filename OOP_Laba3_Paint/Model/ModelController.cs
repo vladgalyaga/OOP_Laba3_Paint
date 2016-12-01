@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OOP_Laba3_Paint.Model.Figures;
 using System.Drawing;
+using OOP_Laba3_Paint.Model.Factories;
 
 namespace OOP_Laba3_Paint
 {
@@ -14,8 +15,9 @@ namespace OOP_Laba3_Paint
         static ModelController fModelController;
 
         static Bitmap m_img = new Bitmap(2000, 2000);
-        private Dictionary<string, Type> m_figuresType;
-        Type m_figur;
+        //   private Dictionary<string, Type> m_figuresType;
+        private Dictionary<string, AFactory> m_figuresType;
+        string m_figur;
         List<Layer> m_layers = new List<Layer>();
         Layer m_workLayer;
         AFigure m_workFigure;
@@ -56,45 +58,71 @@ namespace OOP_Laba3_Paint
             AFigure.p_ModelController = this;
             m_workLayer = new Layer();
             m_layers.Add(m_workLayer);
-            m_figuresType = new Dictionary<string, Type>();
-            m_figuresType.Add("line", typeof(Line));
-            m_figuresType.Add("retangle", typeof(Model.Figures.CRectangle));
-            m_figuresType.Add("ellipce", typeof(Ellipse));
-            m_figuresType.Add("fillEllipse", typeof(FillEllipse));
-            m_figuresType.Add("fillRetangle", typeof(FillRectangle));
-            m_figur = typeof(Model.Figures.CRectangle);
-            //   m_figuresType.Add("triangle", typeof(Triangle));
 
+            m_figuresType = new Dictionary<string, AFactory>();
+            m_figuresType.Add("line", new LineFactory());
+            m_figuresType.Add("retangle", new RectangleFacrory());
+            m_figuresType.Add("ellipce", new EllipseFactory());
+            m_figuresType.Add("fillEllipse", new FillElipseFactory());
+            m_figuresType.Add("fillRetangle", new FillRectangleFactory());
+            m_figur = "retangle";
         }
+
+        //public ModelController()
+        //{
+        //    g = Graphics.FromImage(Img);
+        //    AFigure.p_ModelController = this;
+        //    m_workLayer = new Layer();
+        //    m_layers.Add(m_workLayer);
+        //    m_figuresType = new Dictionary<string, Type>();
+        //    m_figuresType.Add("line", typeof(Line));
+        //    m_figuresType.Add("retangle", typeof(Model.Figures.CRectangle));
+        //    m_figuresType.Add("ellipce", typeof(Ellipse));
+        //    m_figuresType.Add("fillEllipse", typeof(FillEllipse));
+        //    m_figuresType.Add("fillRetangle", typeof(FillRectangle));
+        //    m_figur = typeof(Model.Figures.CRectangle);
+
+
+        //}
 
         public void ChangePaintColor(Color color)
         {
-            m_paintColor = color;
+
+            m_figuresType[m_figur].PaintColor = color;
         }
         public void ChangeBrushColor(Color color)
         {
-            m_brushColor = color;
+
+            m_figuresType[m_figur].BrushColor = color;
         }
         public void AddFigure(Point point, Size size)
         {
 
-            //Img = new Bitmap(2000, 2000);
-            //g = Graphics.FromImage(Img);
-            object[] parametrs = new object[4];
-            //  (Point point, Size size, Color color)
-            parametrs[0] = point;
-            parametrs[1] = size;
-            parametrs[2] = m_paintColor;
-            parametrs[3] = m_brushColor;
-
-
-            AFigure figure = (AFigure)Activator.CreateInstance(m_figur, parametrs);
-
-            m_workLayer.Figures.Add(figure);
+            m_workLayer.Figures.Add(m_figuresType[m_figur].CreateProduct(point, size));
 
             RefreshIMG();
 
         }
+        //public void AddFigure(Point point, Size size)
+        //{
+
+        //    //Img = new Bitmap(2000, 2000);
+        //    //g = Graphics.FromImage(Img);
+        //    object[] parametrs = new object[4];
+        //    //  (Point point, Size size, Color color)
+        //    parametrs[0] = point;
+        //    parametrs[1] = size;
+        //    parametrs[2] = m_paintColor;
+        //    parametrs[3] = m_brushColor;
+
+
+        //    AFigure figure = (AFigure)Activator.CreateInstance(m_figur, parametrs);
+
+        //    m_workLayer.Figures.Add(figure);
+
+        //    RefreshIMG();
+
+        //}
         public void AddLayer()
         {
             m_layers.Add(new Layer());
@@ -103,10 +131,14 @@ namespace OOP_Laba3_Paint
         public void EnteringFigure(int figureNumber)
         {
             m_workFigure = m_workLayer.Figures[figureNumber];
+            changeLayers();
+            changeFigures();
         }
         public void EnteringLayer(int layerNumber)
         {
             m_workLayer = m_layers[layerNumber];
+            changeLayers();
+            changeFigures();
         }
         public void DeleteLayers()
         {
@@ -125,7 +157,7 @@ namespace OOP_Laba3_Paint
 
         public void EnteringFigure(string nameOfFigure)
         {
-            m_figur = m_figuresType[nameOfFigure];
+            m_figur = nameOfFigure;
 
         }
         private void changeLayers()
@@ -163,6 +195,32 @@ namespace OOP_Laba3_Paint
             changeIMGEventHandler?.Invoke(Img);
             changeLayers();
             changeFigures();
+        }
+        public void ChangePaintColorLayer(Color color)
+        {
+            for (int i = 0; i < m_workLayer.Figures.Count; i++)
+            {
+                m_workLayer.Figures[i].PaintColor = color;
+            }
+            RefreshIMG();
+        }
+        public void ChangeBrushColorLayer(Color color)
+        {
+            for (int i = 0; i < m_workLayer.Figures.Count; i++)
+            {
+                m_workLayer.Figures[i].BrushColor = color;
+            }
+            RefreshIMG();
+        }
+        public void ChangeBrushColorFigure(Color color)
+        {
+            m_workFigure.BrushColor = color;
+            RefreshIMG();
+        }
+        public void ChangePaintColorFigure(Color color)
+        {
+            m_workFigure.PaintColor = color;
+            RefreshIMG();
         }
     }
 }

@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOP_Laba3_Paint.Layer">
-    <Position X="3.75" Y="1.25" Width="1.5" />
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAgAAAAAAAAAAAACAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Model\Layer.cs</FileName>
@@ -48,7 +48,7 @@
   <Class Name="OOP_Laba3_Paint.ModelController" Collapsed="true">
     <Position X="1.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAARIAAUAABAAIEIAAAAQAAAKBQABAAKgCgAAAEAAAI=</HashCode>
+      <HashCode>BACRIAAUAABAIIEIAAAAQAAAKBQAhAAKwCgAAAEAAAI=</HashCode>
       <FileName>Model\ModelController.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -63,14 +63,14 @@
       <FileName>Controller.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_model" />
       <Field Name="m_view" />
+      <Field Name="m_model" />
     </ShowAsAssociation>
   </Class>
   <Class Name="OOP_Laba3_Paint.Form1" Collapsed="true">
     <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BSAgAACQACBKACURIKCBrQAGTMA8wQMJkiAICQiAAGA=</HashCode>
+      <HashCode>BSAgAgSQACBKACcRoKCBrRBGXsA8wQMJkiAICQyAAGA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -85,7 +85,7 @@
   <Interface Name="OOP_Laba3_Paint.IEventOfView" Collapsed="true">
     <Position X="1.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABIAAEBAAAAAAAAAAAAgQEAkgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgQAAABIAAMBAAAAAAAEAgAEgQEAkgAAAAAAAAA=</HashCode>
       <FileName>IEventOfView.cs</FileName>
     </TypeIdentifier>
   </Interface>

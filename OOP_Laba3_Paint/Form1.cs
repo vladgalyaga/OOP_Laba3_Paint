@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace OOP_Laba3_Paint
 {
+ 
     public partial class Form1 : Form, IEventOfView
     {
         Point point, oldPoint;
@@ -23,10 +24,21 @@ namespace OOP_Laba3_Paint
         public event EnteringLayerEventHandler enteringLayerEventHandler;
 
 
-        public event ChangePaintColorEventHandler changePaintColorEventHandler;
-        public event ChangeBrushColorEventHandler changeBrushColorEventHandler;
-        public event DeleteLayerEventHandler deleteLayerEventHandler;
+        public event ChangeColorEventHandler changePaintColorEventHandler;
+        public event ChangeColorEventHandler changeBrushColorEventHandler;
+        public event DeleteObjectEventHandler deleteLayerEventHandler;
         public event EnteringCreateFigureEventHandler enteringCreateFigureEventHandler;
+        public event DeleteObjectEventHandler deleteFigureEventHandler;
+        public event ChangeColorEventHandler changeFiguresBrushColorEventHandler;
+        public event ChangeColorEventHandler changeFiguresPaintColorEventHandler;
+        public event ChangeColorEventHandler changeLayerBrushColorEventHandler;
+        public event ChangeColorEventHandler changeLayerPaintColorEventHandler;
+
+
+
+
+        DeleteObjectEventHandler deletObj;
+        ChangeColorEventHandler changeObjBrushColor, changeObjPaintColor;
 
         public Form1()
         {
@@ -133,11 +145,23 @@ namespace OOP_Laba3_Paint
         private void listBoxLayer_SelectedIndexChanged(object sender, EventArgs e)
         {
             enteringLayerEventHandler(listBoxLayer.SelectedIndex);
+            deletObj = null;
+            deletObj += deleteLayerEventHandler;
+            changeObjBrushColor = null;
+            changeObjBrushColor += changeLayerBrushColorEventHandler;
+            changeObjPaintColor = null;
+            changeObjPaintColor += changeLayerPaintColorEventHandler;
         }
 
         private void listBoxFigure_SelectedIndexChanged(object sender, EventArgs e)
         {
             enteringFigureEventHandler(listBoxFigure.SelectedIndex);
+            deletObj = null;
+            deletObj += deleteFigureEventHandler;
+            changeObjBrushColor = null;
+            changeObjBrushColor += changeFiguresBrushColorEventHandler;
+            changeObjPaintColor = null;
+            changeObjPaintColor += changeFiguresPaintColorEventHandler;
         }
 
         private Color EnterColor()
@@ -172,7 +196,17 @@ namespace OOP_Laba3_Paint
 
         private void button4_Click(object sender, EventArgs e)
         {
-            deleteLayerEventHandler?.Invoke();
+            deletObj();
+        }
+
+        private void brushColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeObjBrushColor(EnterColor());
+        }
+
+        private void paintColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeObjPaintColor(EnterColor());
         }
 
         public void RefreshLayers(string[] layers)

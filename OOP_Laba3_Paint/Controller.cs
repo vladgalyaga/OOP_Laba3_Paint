@@ -39,6 +39,11 @@ namespace OOP_Laba3_Paint
 
 
             m_view.enteringFigureEventHandler += m_model.EnteringFigure;
+            m_view.deleteFigureEventHandler += m_model.DeleteFigure;
+            m_view.changeFiguresBrushColorEventHandler += m_model.ChangeBrushColorFigure;
+            m_view.changeFiguresPaintColorEventHandler += m_model.ChangePaintColorFigure;
+            m_view.changeLayerBrushColorEventHandler += m_model.ChangeBrushColorLayer;
+            m_view.changeLayerPaintColorEventHandler += m_model.ChangePaintColorLayer;
 
         }
 

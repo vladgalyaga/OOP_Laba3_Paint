@@ -52,6 +52,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.redactorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brushColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paintColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -62,7 +65,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.addFigureToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.redactorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(581, 24);
@@ -151,14 +155,14 @@
             // peintsColorToolStripMenuItem
             // 
             this.peintsColorToolStripMenuItem.Name = "peintsColorToolStripMenuItem";
-            this.peintsColorToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.peintsColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.peintsColorToolStripMenuItem.Text = "Peint`s color";
             this.peintsColorToolStripMenuItem.Click += new System.EventHandler(this.peintsColorToolStripMenuItem_Click);
             // 
             // brushsColorToolStripMenuItem
             // 
             this.brushsColorToolStripMenuItem.Name = "brushsColorToolStripMenuItem";
-            this.brushsColorToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.brushsColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.brushsColorToolStripMenuItem.Text = "Brush`s color";
             this.brushsColorToolStripMenuItem.Click += new System.EventHandler(this.brushsColorToolStripMenuItem_Click);
             // 
@@ -280,6 +284,29 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.addLayerButton_Click);
             // 
+            // redactorToolStripMenuItem
+            // 
+            this.redactorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.brushColorToolStripMenuItem,
+            this.paintColorToolStripMenuItem});
+            this.redactorToolStripMenuItem.Name = "redactorToolStripMenuItem";
+            this.redactorToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.redactorToolStripMenuItem.Text = "Redactor";
+            // 
+            // brushColorToolStripMenuItem
+            // 
+            this.brushColorToolStripMenuItem.Name = "brushColorToolStripMenuItem";
+            this.brushColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.brushColorToolStripMenuItem.Text = "Brush Color...";
+            this.brushColorToolStripMenuItem.Click += new System.EventHandler(this.brushColorToolStripMenuItem_Click);
+            // 
+            // paintColorToolStripMenuItem
+            // 
+            this.paintColorToolStripMenuItem.Name = "paintColorToolStripMenuItem";
+            this.paintColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.paintColorToolStripMenuItem.Text = "Paint color...";
+            this.paintColorToolStripMenuItem.Click += new System.EventHandler(this.paintColorToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +351,9 @@
         private System.Windows.Forms.ToolStripMenuItem fillEllipceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fillRetangleToolStripMenuItem;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ToolStripMenuItem redactorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brushColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paintColorToolStripMenuItem;
     }
 }
 

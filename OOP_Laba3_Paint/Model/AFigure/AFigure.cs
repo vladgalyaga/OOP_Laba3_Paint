@@ -5,25 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Laba3_Paint.Model.Figures
+namespace OOP_Laba3_Paint
 {
-    public  delegate void AddFigureIMGEventHandler();
+    public delegate void AddFigureIMGEventHandler();
 
 
     public abstract class AFigure
     {
-     
+
         public static ModelController p_ModelController;
         Point m_point;
         protected Color paintColor;
         private Color brushColor;
-     
+
         Size m_size;
         protected static int Number;
-        public string Name; 
+        public string Name;
 
 
-        protected Color PaintColor
+        public Color PaintColor
         {
             get
             {
@@ -62,7 +62,7 @@ namespace OOP_Laba3_Paint.Model.Figures
             }
         }
 
-        protected Color BrushColor
+        public Color BrushColor
         {
             get
             {

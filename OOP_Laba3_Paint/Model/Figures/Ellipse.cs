@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Laba3_Paint.Model.Figures
+namespace OOP_Laba3_Paint
 {
-    class Ellipse : AFigure
+   public class Ellipse : AFigure
     {
         public Ellipse(Point point, Size size, Color paintColor, Color brushColor ) : base(point, size, paintColor, brushColor)
         {

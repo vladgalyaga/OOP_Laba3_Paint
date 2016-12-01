@@ -48,7 +48,13 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="IModel.cs" />
+    <Compile Include="Model\AFigure\AFactory.cs" />
     <Compile Include="Model\AFigure\AFigure.cs" />
+    <Compile Include="Model\Factories\EllipseFactory.cs" />
+    <Compile Include="Model\Factories\FillElipseFactory.cs" />
+    <Compile Include="Model\Factories\FillRectangleFactory.cs" />
+    <Compile Include="Model\Factories\LineFactory.cs" />
+    <Compile Include="Model\Factories\RectangleFacrory.cs" />
     <Compile Include="Model\Figures\Ellipse.cs" />
     <Compile Include="Model\Figures\FillElipse.cs" />
     <Compile Include="Model\Figures\FillRectangle.cs" />

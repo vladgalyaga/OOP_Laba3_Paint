@@ -41,6 +41,9 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.peintsColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brushsColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redactorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brushColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paintColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,9 +55,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.redactorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.brushColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paintColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.motionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -107,6 +108,7 @@
             this.addFigureToolStripMenuItem.Name = "addFigureToolStripMenuItem";
             this.addFigureToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.addFigureToolStripMenuItem.Text = "Add Figure...";
+            this.addFigureToolStripMenuItem.Click += new System.EventHandler(this.addFigureToolStripMenuItem_Click);
             // 
             // retangleToolStripMenuItem
             // 
@@ -155,16 +157,40 @@
             // peintsColorToolStripMenuItem
             // 
             this.peintsColorToolStripMenuItem.Name = "peintsColorToolStripMenuItem";
-            this.peintsColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.peintsColorToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.peintsColorToolStripMenuItem.Text = "Peint`s color";
             this.peintsColorToolStripMenuItem.Click += new System.EventHandler(this.peintsColorToolStripMenuItem_Click);
             // 
             // brushsColorToolStripMenuItem
             // 
             this.brushsColorToolStripMenuItem.Name = "brushsColorToolStripMenuItem";
-            this.brushsColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.brushsColorToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.brushsColorToolStripMenuItem.Text = "Brush`s color";
             this.brushsColorToolStripMenuItem.Click += new System.EventHandler(this.brushsColorToolStripMenuItem_Click);
+            // 
+            // redactorToolStripMenuItem
+            // 
+            this.redactorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.brushColorToolStripMenuItem,
+            this.paintColorToolStripMenuItem,
+            this.motionToolStripMenuItem});
+            this.redactorToolStripMenuItem.Name = "redactorToolStripMenuItem";
+            this.redactorToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.redactorToolStripMenuItem.Text = "Redactor";
+            // 
+            // brushColorToolStripMenuItem
+            // 
+            this.brushColorToolStripMenuItem.Name = "brushColorToolStripMenuItem";
+            this.brushColorToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.brushColorToolStripMenuItem.Text = "Brush Color...";
+            this.brushColorToolStripMenuItem.Click += new System.EventHandler(this.brushColorToolStripMenuItem_Click);
+            // 
+            // paintColorToolStripMenuItem
+            // 
+            this.paintColorToolStripMenuItem.Name = "paintColorToolStripMenuItem";
+            this.paintColorToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.paintColorToolStripMenuItem.Text = "Paint color...";
+            this.paintColorToolStripMenuItem.Click += new System.EventHandler(this.paintColorToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -244,6 +270,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Cut";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -284,28 +311,12 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.addLayerButton_Click);
             // 
-            // redactorToolStripMenuItem
+            // motionToolStripMenuItem
             // 
-            this.redactorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.brushColorToolStripMenuItem,
-            this.paintColorToolStripMenuItem});
-            this.redactorToolStripMenuItem.Name = "redactorToolStripMenuItem";
-            this.redactorToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.redactorToolStripMenuItem.Text = "Redactor";
-            // 
-            // brushColorToolStripMenuItem
-            // 
-            this.brushColorToolStripMenuItem.Name = "brushColorToolStripMenuItem";
-            this.brushColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.brushColorToolStripMenuItem.Text = "Brush Color...";
-            this.brushColorToolStripMenuItem.Click += new System.EventHandler(this.brushColorToolStripMenuItem_Click);
-            // 
-            // paintColorToolStripMenuItem
-            // 
-            this.paintColorToolStripMenuItem.Name = "paintColorToolStripMenuItem";
-            this.paintColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.paintColorToolStripMenuItem.Text = "Paint color...";
-            this.paintColorToolStripMenuItem.Click += new System.EventHandler(this.paintColorToolStripMenuItem_Click);
+            this.motionToolStripMenuItem.Name = "motionToolStripMenuItem";
+            this.motionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.motionToolStripMenuItem.Text = "motion";
+            this.motionToolStripMenuItem.Click += new System.EventHandler(this.motionToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -354,6 +365,7 @@
         private System.Windows.Forms.ToolStripMenuItem redactorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brushColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paintColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem motionToolStripMenuItem;
     }
 }
 

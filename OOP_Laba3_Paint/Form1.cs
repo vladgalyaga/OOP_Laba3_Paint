@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace OOP_Laba3_Paint
 {
- 
+
     public partial class Form1 : Form, IEventOfView
     {
         Point point, oldPoint;
-
+        bool redacting;
 
         Size size = new Size();
 
@@ -33,12 +33,14 @@ namespace OOP_Laba3_Paint
         public event ChangeColorEventHandler changeFiguresPaintColorEventHandler;
         public event ChangeColorEventHandler changeLayerBrushColorEventHandler;
         public event ChangeColorEventHandler changeLayerPaintColorEventHandler;
-
-
-
+        public event ActionOnFigureEventHandler cutFigureEventHandler;
+        public event ActionOnFigureEventHandler putFigureEventHandler;
+        public event MovingOnObjEventHandler movingOnFigureEventHandler;
+        public event MovingOnObjEventHandler movingOnLayerEventHandler;
 
         DeleteObjectEventHandler deletObj;
         ChangeColorEventHandler changeObjBrushColor, changeObjPaintColor;
+        MovingOnObjEventHandler movingOnObjEventHandler;
 
         public Form1()
         {
@@ -64,6 +66,18 @@ namespace OOP_Laba3_Paint
             "|JPG (.JPG)|*.JPG" +
             "|GIF (.GIF)|*.GIF" +
             "|PNG (.PNG)|*.PNG";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    b.Save(dlg.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                catch
+                {
+                    MessageBox.Show("Impossible to save image", "FATAL ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,25 +125,34 @@ namespace OOP_Laba3_Paint
 
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
+            if (redacting)
+            {
+                int x = point.X - oldPoint.X;
 
 
-            size.Width = Math.Abs(point.X - oldPoint.X);
+                int y = point.Y - oldPoint.Y;
+                 movingOnObjEventHandler?.Invoke(x, y);
+
+            }
+            else
+            {
+                size.Width = Math.Abs(point.X - oldPoint.X);
 
 
-            size.Height = Math.Abs(point.Y - oldPoint.Y);
+                size.Height = Math.Abs(point.Y - oldPoint.Y);
 
 
 
-            addFigureEventHandler?.Invoke(oldPoint, size);
+                addFigureEventHandler?.Invoke(oldPoint, size);
+            }
+
+
+
+
+
+
+
         }
-
-        private void brushsColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            changeBrushColorEventHandler(EnterColor());
-        }
-
-
-
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             oldPoint.X = e.X;
@@ -142,6 +165,17 @@ namespace OOP_Laba3_Paint
             point.Y = e.Y;
         }
 
+
+
+        private void brushsColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeBrushColorEventHandler(EnterColor());
+        }
+
+
+
+
+
         private void listBoxLayer_SelectedIndexChanged(object sender, EventArgs e)
         {
             enteringLayerEventHandler(listBoxLayer.SelectedIndex);
@@ -151,6 +185,8 @@ namespace OOP_Laba3_Paint
             changeObjBrushColor += changeLayerBrushColorEventHandler;
             changeObjPaintColor = null;
             changeObjPaintColor += changeLayerPaintColorEventHandler;
+            movingOnObjEventHandler = null;
+            movingOnObjEventHandler += movingOnLayerEventHandler;
         }
 
         private void listBoxFigure_SelectedIndexChanged(object sender, EventArgs e)
@@ -162,6 +198,8 @@ namespace OOP_Laba3_Paint
             changeObjBrushColor += changeFiguresBrushColorEventHandler;
             changeObjPaintColor = null;
             changeObjPaintColor += changeFiguresPaintColorEventHandler;
+            movingOnObjEventHandler = null;
+            movingOnObjEventHandler += movingOnFigureEventHandler;
         }
 
         private Color EnterColor()
@@ -177,7 +215,7 @@ namespace OOP_Laba3_Paint
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            putFigureEventHandler?.Invoke();
         }
 
 
@@ -207,6 +245,21 @@ namespace OOP_Laba3_Paint
         private void paintColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             changeObjPaintColor(EnterColor());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cutFigureEventHandler?.Invoke();
+        }
+
+        private void addFigureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            redacting = false;
+        }
+
+        private void motionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            redacting = true;
         }
 
         public void RefreshLayers(string[] layers)

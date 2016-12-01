@@ -44,7 +44,10 @@ namespace OOP_Laba3_Paint
             m_view.changeFiguresPaintColorEventHandler += m_model.ChangePaintColorFigure;
             m_view.changeLayerBrushColorEventHandler += m_model.ChangeBrushColorLayer;
             m_view.changeLayerPaintColorEventHandler += m_model.ChangePaintColorLayer;
-
+            m_view.cutFigureEventHandler += m_model.CutFigure;
+            m_view.putFigureEventHandler += m_model.PutFigure;
+            m_view.movingOnFigureEventHandler += m_model.FiguresMoving;
+            m_view.movingOnLayerEventHandler += m_model.LayerMoving;
         }
 
         private void M_view_deleteLayerEventHandler()

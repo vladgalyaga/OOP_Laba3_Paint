@@ -21,6 +21,10 @@ namespace OOP_Laba3_Paint
         List<Layer> m_layers = new List<Layer>();
         Layer m_workLayer;
         AFigure m_workFigure;
+        AFigure m_tmpFigure;
+
+
+
         Color m_brushColor = Color.Black;
         Color m_paintColor = Color.Black;
         public event ChangeIMGEventHandler changeIMGEventHandler;
@@ -222,5 +226,39 @@ namespace OOP_Laba3_Paint
             m_workFigure.PaintColor = color;
             RefreshIMG();
         }
+        public void CutFigure()
+        {
+            m_tmpFigure = m_workFigure;
+            DeleteFigure();
+
+        }
+        public void PutFigure()
+        {
+            m_workLayer.Figures.Add(m_tmpFigure);
+
+            RefreshIMG();
+
+        }
+        public void FiguresMoving(int x, int y)
+        {
+            Point p = m_workFigure.Point;
+            p.X += x;
+            p.Y += y;
+            m_workFigure.Point = p;
+            RefreshIMG();
+        }
+        public void LayerMoving(int x, int y)
+        {
+            for (int i = 0; i < m_workLayer.Figures.Count; i++)
+            {
+                Point p = m_workLayer.Figures[i].Point; ;
+                p.X += x;
+                p.Y += y;
+                m_workLayer.Figures[i].Point= p;
+                
+            }
+            RefreshIMG();
+        }
+
     }
 }

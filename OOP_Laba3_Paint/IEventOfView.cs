@@ -13,10 +13,10 @@ namespace OOP_Laba3_Paint
     public delegate void EnteringLayerEventHandler(int layerNumber);
     public delegate void EnteringFigureEventHandler(int figureName);
     public delegate void ChangeColorEventHandler(Color color);
-   
+    public delegate void ActionOnFigureEventHandler();
 
     public delegate void DeleteObjectEventHandler();
-
+    public delegate void MovingOnObjEventHandler(int x, int y);
 
 
     public interface IEventOfView
@@ -34,6 +34,10 @@ namespace OOP_Laba3_Paint
         event ChangeColorEventHandler changeFiguresPaintColorEventHandler;
         event ChangeColorEventHandler changeLayerBrushColorEventHandler;
         event ChangeColorEventHandler changeLayerPaintColorEventHandler;
+        event ActionOnFigureEventHandler cutFigureEventHandler;
+        event ActionOnFigureEventHandler putFigureEventHandler;
+        event MovingOnObjEventHandler movingOnFigureEventHandler;
+        event MovingOnObjEventHandler movingOnLayerEventHandler;
 
 
         void RefreshLayers(string[] layers);
